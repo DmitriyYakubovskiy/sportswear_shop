@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Каталог</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Каталог</h1>
+
+<form th:action="@{/products/search}" method="get">
+    <input type="text" name="name" placeholder="Название">
+    <input type="text" name="brand" placeholder="Бренд">
+    <input type="text" name="category" placeholder="Категория">
+    <input type="text" name="size" placeholder="Размер">
+    <input type="text" name="color" placeholder="Цвет">
+    <input type="number" name="minPrice" placeholder="Минимальная цена">
+    <input type="number" name="maxPrice" placeholder="Максимальная цена">
+    <button type="submit">Поиск</button>
+</form>
+
+<ul th:each="product : ${products}">
+    <li>
+        <span th:text="${product.name}">Имя продукта</span> -
+        <span th:text="${product.description}">Описание</span> -
+        <span th:text="${product.brand.name}">Бренд</span> -
+        <span th:text="${product.category.name}">Категория</span> -
+        <span th:text="${product.size.value}">Размер</span> -
+        <span th:text="${product.color}">Цвет</span> -
+        <span th:text="${product.price}">Цена</span>
+    </li>
+</ul>
+</body>
+</html>
